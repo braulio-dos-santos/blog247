@@ -42,7 +42,7 @@ export class ArtigosComponent {
           this.getArtigos();
         },
         error: (err) => {
-          console.error('Erro ao salvar artigo:', err);
+          console.error('Erro ao excluir artigo:', err);
         },
       });
       setTimeout(() => (this.sucesso = false), 3000);
