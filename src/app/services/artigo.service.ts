@@ -27,7 +27,7 @@ export class ArtigoService {
     return this.http.put<Artigo>(`${this.apiURL}?id=${id}`, artigo);
   }
 
-  deleteArtigo(id: number): Observable<Artigo> {
-    return this.http.delete<Artigo>(`${this.apiURL}?id=${id}`);
+  deleteArtigo(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiURL}?id=${id}`);
   }
 }
