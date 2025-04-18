@@ -1,0 +1,37 @@
+<div class="form-container">
+  <h2>Criar Artigo</h2>
+
+  <form [formGroup]="form" (ngSubmit)="createArtigo()">
+    <label>
+      Título:
+      <input
+        type="text"
+        formControlName="titulo"
+        placeholder="Título"
+        required
+      />
+      <div *ngIf="form.get('titulo')?.invalid && form.get('titulo')?.touched">
+        <small *ngIf="form.get('titulo')?.errors?.['required']">Título é obrigatório</small>
+        <small *ngIf="form.get('titulo')?.errors?.['minlength']">Mínimo de 5 letras</small>
+      </div>
+    </label>
+
+    <label>
+      Conteúdo:
+      <textarea
+        formControlName="conteudo"
+        placeholder="Conteúdo"
+        required
+      ></textarea>
+      <div *ngIf="form.get('conteudo')?.invalid && form.get('conteudo')?.touched">
+        <small *ngIf="form.get('conteudo')?.errors?.['required']">Conteúdo é obrigatório</small>
+      </div>
+    </label>
+
+    <button type="submit" [disabled]="form.invalid">Salvar</button>
+  </form>
+
+  <div *ngIf="sucesso" class="success-message">
+    Artigo criado com sucesso!
+  </div>
+</div>

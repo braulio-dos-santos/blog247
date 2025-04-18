@@ -1,0 +1,18 @@
+<h2>Artigo Detalhe</h2>
+
+<ul *ngIf="artigo?.id; else mensagemArtigoNaoEncontrado" class="artigo-details">
+  <li>
+    <p>
+      Id do Artigo: <span>{{ artigo?.id }}</span>
+    </p>
+    <strong>{{ artigo?.titulo }}</strong>
+    <p>{{ artigo?.conteudo }}</p>
+  </li>
+  <button class="btn-proximo" (click)="getProximoArtigo()">Próximo Artigo</button>
+</ul>
+
+<a href="" class="link-artigos">Lista de Artigos</a>
+
+<ng-template #mensagemArtigoNaoEncontrado>
+  <p class="erro">Este artigo não existe</p>
+</ng-template>

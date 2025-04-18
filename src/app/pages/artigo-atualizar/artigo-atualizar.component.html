@@ -1,0 +1,31 @@
+<p>artigo-atualizar works!</p>
+
+<div class="form-container">
+  <h2>Atualizar Usuário</h2>
+
+  <form (ngSubmit)="updateArtigo()">
+    <label>
+      Id:
+      <input type="number" [(ngModel)]="artigoId" name="id" disabled />
+    </label>
+    <label>
+      Nome:
+      <input type="text" [(ngModel)]="artigo.titulo" name="titulo" required />
+    </label>
+
+    <label>
+      Conteúdo:
+      <textarea
+        name="conteudo"
+        [(ngModel)]="artigo.conteudo"
+        placeholder="Conteúdo"
+      ></textarea>
+    </label>
+
+    <button type="submit">Salvar</button>
+  </form>
+
+  <div *ngIf="sucesso" class="success-message">
+    Artigo atualizado com sucesso!
+  </div>
+</div>
