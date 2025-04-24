@@ -13,16 +13,22 @@ import { Router } from '@angular/router';
 export class ArtigosComponent {
   artigos: Artigo[] = [];
   sucesso = false;
+  errorMessage: string | null = null
 
-  constructor(private artigoService: ArtigoService, private router: Router) {}
+  constructor(private artigoService: ArtigoService, private router: Router) { }
 
   ngOnInit() {
     this.getArtigos();
   }
 
   getArtigos() {
-    this.artigoService.getArtigos().subscribe((data) => {
-      this.artigos = data;
+    this.artigoService.getArtigos().subscribe({
+      next: (artigos) => {
+        this.artigos = artigos
+      },
+      error: (error) => {
+        this.errorMessage = error.message
+      }
     });
   }
 
@@ -41,8 +47,8 @@ export class ArtigosComponent {
           this.sucesso = true;
           this.getArtigos();
         },
-        error: (err) => {
-          console.error('Erro ao excluir artigo:', err);
+        error: (error) => {
+          this.errorMessage = error.message
         },
       });
       setTimeout(() => (this.sucesso = false), 3000);
