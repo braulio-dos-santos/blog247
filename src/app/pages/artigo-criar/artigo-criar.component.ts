@@ -4,6 +4,7 @@ import { ArtigoService } from '../../services/artigo.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-artigo-criar',
@@ -12,14 +13,21 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
   styleUrl: './artigo-criar.component.css',
 })
 export class ArtigoCriarComponent {
-  artigo: Artigo = { titulo: '', conteudo: '' };
+  artigo: Artigo = {
+    titulo: '',
+    conteudo: '',
+    imagem: ''
+  };
+
   sucesso = false;
   form!: FormGroup;
+  errorMessage: string | null = null
 
-  constructor(private artigoService: ArtigoService, private fb: FormBuilder) {
+  constructor(private artigoService: ArtigoService, private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({
       titulo: ['', [Validators.required, Validators.minLength(5)]],
       conteudo: ['', [Validators.required]],
+      imagem: [[Validators.required]],
     });
   }
 
@@ -29,10 +37,11 @@ export class ArtigoCriarComponent {
       this.artigoService.createArtigo(this.artigo).subscribe({
         next: () => {
           this.sucesso = true;
-          this.artigo = { titulo: '', conteudo: '' }; // limpa o form
+          // this.artigo = { titulo: '', conteudo: '', imagem: '' };
+          this.router.navigate(['/artigos'])
         },
-        error: (err) => {
-          console.error('Erro ao salvar artigo:', err);
+        error: (error) => {
+          this.errorMessage = error.message
         },
       });
     }
