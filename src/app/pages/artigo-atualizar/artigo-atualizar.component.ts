@@ -12,14 +12,19 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './artigo-atualizar.component.css',
 })
 export class ArtigoAtualizarComponent implements OnInit {
-  artigo: Artigo = { titulo: '', conteudo: '' };
+  artigo: Artigo = {
+    titulo: '',
+    conteudo: '',
+    imagem: ''
+  };
+
   sucesso = false;
   artigoId!: number;
 
   constructor(
     private artigoService: ArtigoService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.artigoId = Number(this.route.snapshot.paramMap.get('id'));
@@ -37,7 +42,7 @@ export class ArtigoAtualizarComponent implements OnInit {
     this.artigoService.updateArtigo(artigoId, this.artigo).subscribe({
       next: () => {
         this.sucesso = true;
-        this.artigo = { titulo: '', conteudo: '' }; // limpa o form
+        this.artigo = { titulo: '', conteudo: '', imagem: '' }; // limpa o form
       },
       error: (err) => {
         console.error('Erro ao salvar artigo:', err);
