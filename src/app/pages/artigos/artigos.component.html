@@ -1,10 +1,12 @@
 <h2>Lista de Artigos</h2>
 
 <div *ngIf="sucesso" class="sucesso-message">Artigo deletado com sucesso!</div>
-
+<div *ngIf="errorMessage" class="alert alert-danger">
+  {{ errorMessage }}
+</div>
 <ul *ngIf="artigos.length > 0; else mensagemArtigo" class="artigo-list">
   <li *ngFor="let artigo of artigos" class="artigo-item">
-    <strong>{{ artigo.titulo }}</strong>
+    <h1>{{ artigo.titulo }}</h1>
     <p>{{ artigo.conteudo }}</p>
     <div class="btn-group">
       <button (click)="getArtigo(artigo.id!)" class="btn-ver">
@@ -20,6 +22,9 @@
   </li>
 </ul>
 
+<div id="ola">
+  Olá
+</div>
 <ng-template #mensagemArtigo>
   <p>Nenhum artigo disponível</p>
 </ng-template>
