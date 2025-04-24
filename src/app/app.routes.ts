@@ -8,7 +8,6 @@ import { ContatoComponent } from './pages/contato/contato.component';
 import { ArtigosPesquisaComponent } from './pages/artigos-pesquisa/artigos-pesquisa.component';
 import { SobreComponent } from './pages/sobre/sobre.component';
 import { ArtigosComponent } from './pages/artigos/artigos.component';
-import { loginAuthGuard } from './auth/login-auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,7 +19,6 @@ export const routes: Routes = [
   {
     path: 'artigo-criar',
     component: ArtigoCriarComponent,
-    canActivate: [loginAuthGuard],
   },
   { path: 'artigo-atualizar-form/:id', component: ArtigoAtualizarComponent },
   { path: 'artigo-atualizar', component: ArtigoAtualizarComponent },
