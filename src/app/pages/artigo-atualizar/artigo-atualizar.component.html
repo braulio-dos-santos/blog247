@@ -9,8 +9,8 @@
       <input type="number" [(ngModel)]="artigoId" name="id" disabled />
     </label>
     <label>
-      Nome:
-      <input type="text" [(ngModel)]="artigo.titulo" name="titulo" required />
+      Título:
+      <input type="text" [(ngModel)]="artigo.titulo" placeholder="Título" name="titulo" required />
     </label>
 
     <label>
@@ -20,6 +20,11 @@
         [(ngModel)]="artigo.conteudo"
         placeholder="Conteúdo"
       ></textarea>
+    </label>
+
+    <label>
+      Imagem:
+      <input type="file" placeholder="Imagem" name="imagem" accept="image/*" required />
     </label>
 
     <button type="submit">Salvar</button>
