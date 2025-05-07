@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Artigo } from '../../interfaces/artigo.interface';
 import { ArtigoService } from '../../services/artigo.service';
 import { CommonModule } from '@angular/common';
@@ -10,21 +10,23 @@ import { Router } from '@angular/router';
   templateUrl: './artigos.component.html',
   styleUrl: './artigos.component.css',
 })
-export class ArtigosComponent {
+export class ArtigosComponent implements OnInit {
   artigos: Artigo[] = [];
   sucesso = false;
-  errorMessage: string | null = null
+  errorMessage: string | null = null;
+  page: number = 1;
+  perPage: number = 10;
 
   constructor(private artigoService: ArtigoService, private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getArtigos();
   }
 
   getArtigos() {
-    this.artigoService.getArtigos().subscribe({
-      next: (artigos) => {
-        this.artigos = artigos
+    this.artigoService.getArtigos(this.page, this.perPage).subscribe({
+      next: (data) => {
+        this.artigos = data.data
       },
       error: (error) => {
         this.errorMessage = error.message
