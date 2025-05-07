@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtigoService } from '../../services/artigo.service';
-import { Artigo } from '../../interfaces/artigo.interface';
+import { Artigo, ArtigoResponse } from '../../interfaces/artigo.interface';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
@@ -13,6 +13,8 @@ import { ActivatedRoute } from '@angular/router';
 export class ArtigoDetalheComponent implements OnInit {
   artigo: any = null;
   artigoId!: number;
+  respostaArtigo: ArtigoResponse | null = null;
+  errorMessage: string | null = null;
 
   constructor(
     private artigoService: ArtigoService,
