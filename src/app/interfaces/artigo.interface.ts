@@ -7,6 +7,14 @@ export interface Artigo {
 
 export interface ApiResponse<T> {
   status: string;
-  data: T;  
-  message: string;
+  data: T;
+  links?: string
+  message?: string;
+}
+
+export interface ArtigoResponse {
+  status: string;
+  data: Artigo;
+  links?: { self: string; artigos: string };
+  message?: string;
 }
