@@ -33,7 +33,7 @@ export class ArtigoAtualizarComponent implements OnInit {
 
   getArtigo(id: number) {
     this.artigoService.getArtigo(id).subscribe((data) => {
-      this.artigo = data;
+      this.artigo = data.data;
     });
   }
 
