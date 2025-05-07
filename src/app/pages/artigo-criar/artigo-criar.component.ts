@@ -16,7 +16,7 @@ export class ArtigoCriarComponent {
   artigo: Artigo = {
     titulo: '',
     conteudo: '',
-    imagem: ''
+    imagem: '',
   };
 
   sucesso = false;
