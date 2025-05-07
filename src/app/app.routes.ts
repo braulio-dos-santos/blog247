@@ -8,20 +8,24 @@ import { ContatoComponent } from './pages/contato/contato.component';
 import { ArtigosPesquisaComponent } from './pages/artigos-pesquisa/artigos-pesquisa.component';
 import { SobreComponent } from './pages/sobre/sobre.component';
 import { ArtigosComponent } from './pages/artigos/artigos.component';
+import { LoginComponent } from './pages/login/login.component';
+import { AuthGuard } from './guards/auth.guard';
+import { LogoutComponent } from './pages/logout/logout.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard], },
   { path: 'home', redirectTo: '' },
-  { path: 'sobre', component: SobreComponent },
-  { path: 'contato', component: ContatoComponent },
-  { path: 'artigos', component: ArtigosComponent },
-  { path: 'artigo-detalhe/:id', component: ArtigoDetalheComponent },
+  { path: 'sobre', component: SobreComponent, canActivate: [AuthGuard], },
+  { path: 'contato', component: ContatoComponent, canActivate: [AuthGuard], },
+  { path: 'artigos', component: ArtigosComponent, canActivate: [AuthGuard], },
+  { path: 'artigo-detalhe/:id', component: ArtigoDetalheComponent, canActivate: [AuthGuard], },
   {
     path: 'artigo-criar',
-    component: ArtigoCriarComponent,
+    component: ArtigoCriarComponent, canActivate: [AuthGuard],
   },
-  { path: 'artigo-atualizar-form/:id', component: ArtigoAtualizarComponent },
-  { path: 'artigo-atualizar', component: ArtigoAtualizarComponent },
-  { path: 'artigos-pesquisa', component: ArtigosPesquisaComponent },
+  { path: 'artigo-atualizar-form/:id', component: ArtigoAtualizarComponent, canActivate: [AuthGuard], },
+  { path: 'artigo-atualizar', component: ArtigoAtualizarComponent, canActivate: [AuthGuard], },
+  { path: 'artigos-pesquisa', component: ArtigosPesquisaComponent, canActivate: [AuthGuard], },
+  { path: 'login', component: LoginComponent, },
   { path: '**', component: Page404Component },
 ];
